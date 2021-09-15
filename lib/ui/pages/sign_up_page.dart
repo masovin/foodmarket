@@ -117,14 +117,16 @@ class SignUpPage extends StatelessWidget {
                 height: 45,
                 padding: EdgeInsets.symmetric(horizontal: defaultMargin),
                 child: RaisedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(AddressPage());
+                    },
                     elevation: 0,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8)),
                     color: mainColor,
                     child: Text('Continue',
                         style: GoogleFonts.poppins(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontWeight: FontWeight.w500)))),
           ],
         ));
