@@ -4,10 +4,12 @@ class GeneralPage extends StatelessWidget {
   final String title;
   final String subtitle;
   final onBackButtonPressed;
+  final child;
   const GeneralPage(
       {this.title = "Tilte",
       this.subtitle = "Subtitle",
-      this.onBackButtonPressed});
+      this.onBackButtonPressed,
+      this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class GeneralPage extends StatelessWidget {
           ),
           SafeArea(
               child: Container(
-            color: "FAFAFC".toColor(),
+            color: Colors.white,
           )),
           SafeArea(
               child: ListView(
@@ -27,7 +29,6 @@ class GeneralPage extends StatelessWidget {
               Column(
                 children: [
                   Container(
-                    margin: EdgeInsets.only(bottom: defaultMargin),
                     padding: EdgeInsets.symmetric(horizontal: defaultMargin),
                     width: double.infinity,
                     height: 100,
@@ -35,14 +36,21 @@ class GeneralPage extends StatelessWidget {
                     child: Row(
                       children: [
                         onBackButtonPressed != null
-                            ? Container(
-                                width: 24,
-                                height: 24,
-                                margin: EdgeInsets.only(right: 26),
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                            'assets/back_arrow.png'))),
+                            ? GestureDetector(
+                                onTap: () {
+                                  if (onBackButtonPressed != null) {
+                                    onBackButtonPressed();
+                                  }
+                                },
+                                child: Container(
+                                  width: 24,
+                                  height: 24,
+                                  margin: EdgeInsets.only(right: 26),
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              'assets/back_arrow.png'))),
+                                ),
                               )
                             : SizedBox(),
                         Column(
@@ -66,6 +74,12 @@ class GeneralPage extends StatelessWidget {
                       ],
                     ),
                   ),
+                  Container(
+                    height: defaultMargin,
+                    width: double.infinity,
+                    color: "FAFAFC".toColor(),
+                  ),
+                  child ?? SizedBox()
                 ],
               )
             ],
